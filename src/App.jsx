@@ -2,6 +2,7 @@ import { useState } from "react";
 import bgImg from "./assets/image.svg";
 
 import "./App.css";
+import Input from "./components/Input";
 
 function App() {
 	return (
@@ -14,10 +15,7 @@ function App() {
 					<p>Drag & Drop your image here</p>
 				</div>
 				<span>Or</span>
-				<div>
-					<label htmlFor="file"></label>
-					<input type="file" name="file" id="file" />
-				</div>
+				<Input />
 			</div>
 		</>
 	);
