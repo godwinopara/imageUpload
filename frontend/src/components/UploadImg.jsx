@@ -2,7 +2,7 @@ import { useRef } from "react";
 import bgImg from "../assets/image.svg";
 import "./uploadImg.css";
 
-const UploadImg = () => {
+const UploadImg = ({ onChange }) => {
 	const inputRef = useRef();
 
 	const handleClick = () => {
@@ -19,7 +19,7 @@ const UploadImg = () => {
 			</div>
 			<span>Or</span>
 			<br />
-			<input ref={inputRef} type="file" name="image" id="image" />
+			<input ref={inputRef} type="file" name="image" id="image" onChange={onChange} />
 			<button className="btn" onClick={handleClick}>
 				Choose a file
 			</button>
