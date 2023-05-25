@@ -31,7 +31,6 @@ function App() {
 			.then((res) => {
 				setUploadStatus("upload-successful");
 				setImgUrl(`http://localhost:3000${res.data.imageUrl}`);
-				console.log(res.data.imageUrl);
 			})
 			.catch((err) => {
 				setUploadStatus("not-started");
@@ -39,9 +38,16 @@ function App() {
 			});
 	};
 
+	const handleDrop = (e) => {
+		e.preventDefault();
+		const image = e.dataTransfer.items[0].getAsFile();
+		setImage(image);
+		setStatus("selected");
+	};
+
 	return (
 		<>
-			{uploadStatus === "not-started" && <UploadImg onChange={handleOnImageChange} handleImageUpload={handleImageUpload} status={status} />}
+			{uploadStatus === "not-started" && <UploadImg img={image ? URL.createObjectURL(image) : ""} onChange={handleOnImageChange} handleImageUpload={handleImageUpload} status={status} handleDrop={handleDrop} />}
 			{uploadStatus === "loading" && <UploadLoading />}
 			{uploadStatus === "upload-successful" && <UploadSuccessful img={imgUrl} />}
 		</>

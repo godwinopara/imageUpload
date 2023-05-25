@@ -2,7 +2,7 @@ import { useRef } from "react";
 import bgImg from "../assets/image.svg";
 import "./uploadImg.css";
 
-const UploadImg = ({ onChange, handleImageUpload, status }) => {
+const UploadImg = ({ onChange, handleImageUpload, handleDrop, status, img }) => {
 	const inputRef = useRef();
 
 	const handleClick = () => {
@@ -13,8 +13,8 @@ const UploadImg = ({ onChange, handleImageUpload, status }) => {
 		<div className="uploadImg__wrapper">
 			<h1>Upload Image</h1>
 			<p>Files should be Jpeg or Png...</p>
-			<div className="uploadImg__wrapper-img">
-				<img src={bgImg} alt="background image" />
+			<div className="uploadImg__wrapper-img" onDrop={handleDrop} onDragOver={(e) => e.preventDefault()}>
+				{img ? <img src={img} alt="" /> : <img src={bgImg} alt="background image" />}
 				<span> Drag & Drop your image here</span>
 			</div>
 			<span>Or</span>
